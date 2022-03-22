@@ -46,16 +46,16 @@ src_prepare() {
 	# Extract the needed bundled lpdwrapper script from within brothers generate script.
 	# Our needed script is located between tags.
 	local TAG="\!ENDOFWFILTER\!"
-	sed -ne "/${TAG}/,/${TAG}/!d" -e "/${TAG}/d; p" < cupswrapper/cupswrapper${MODEL} > brother_lpdwrapper_${MODEL} || die
+	sed -ne "/${TAG}/,/${TAG}/!d" -e "/${TAG}/d; p" < cupswrapper/cupswrapper${MODEL} > brlpdwrapper${MODEL} || die
 
 	# exchange the vars in the script with the values of our ones and
 	# remove masking backslashes and some other stuff
 	local PRINTER_NAME="${MODEL^^}"
 	sed -i -e "s|\${printer_model}|${MODEL}|g;s|\${device_model}|Printers|g;s|\${printer_name}|${PRINTER_NAME}|g;s|exit \$errorcode|exit|" \
-		-e 's|\\\([\$\`]\)|\1|g' brother_lpdwrapper_${MODEL} || die
+		-e 's|\\\([\$\`]\)|\1|g' brlpdwrapper${MODEL} || die
 
 	if use debug; then
-		sed -i '/^DEBUG=/s/.$/1/' brother_lpdwrapper_${MODEL} || die
+		sed -i '/^DEBUG=/s/.$/1/' brlpdwrapper${MODEL} || die
 	fi
 }
 
