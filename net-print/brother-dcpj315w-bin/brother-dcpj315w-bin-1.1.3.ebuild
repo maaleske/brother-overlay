@@ -37,7 +37,7 @@ src_prepare() {
 		sed -i '/^PaperType/s/Letter/A4/' inf/br${MODEL}rc || die
 	fi
 
-	mv "${WORKDIR}/brother_${MODEL}_GPL_source_${PV}-${BR_PR}/" "${S}/cupswrapper-src/" || die
+	mv "${WORKDIR}/${MODEL}_cupswrapper_GPL_source_${PV}-${BR_PR}/" "${S}/cupswrapper-src/" || die
 
 	cd "cupswrapper-src" || die
 	# We use our self-compiled brcupsconfpt1, which is called brcupsconfig.
@@ -75,7 +75,7 @@ src_install() {
 	exeinto ${DEST}/cupswrapper
 	doexe brcupsconfig
 
-	cd ../ppd || die
+	cd ../PPD || die
 	insinto ${DEST}/cupswrapper
 	doins brother_${MODEL}_printer_en.ppd
 	insinto /usr/share/cups/model/Brother
@@ -90,7 +90,7 @@ src_install() {
 
 	cd ../inf || die
 	insinto ${DEST}/inf
-	doins br${MODEL}rc br${MODEL}func ImagingArea PaperDimension paperinfij2
+	doins br${MODEL}rc br${MODEL}func ImagingArea paperinfij2
 	doins -r lut
 
 	# proprietary binary, no source available
