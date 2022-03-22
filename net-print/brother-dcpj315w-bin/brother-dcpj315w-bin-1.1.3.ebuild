@@ -69,7 +69,7 @@ src_install() {
 
 	cd cupswrapper-src || die
 	exeinto /usr/libexec/cups/filter
-	doexe brother_lpdwrapper_${MODEL}
+	doexe brlpdwrapper${MODEL}
 
 	cd brcupsconfig || die
 	exeinto ${DEST}/cupswrapper
